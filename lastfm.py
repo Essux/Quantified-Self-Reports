@@ -4,11 +4,9 @@ from datetime import datetime, timezone, timedelta
 
 LASTFM_API_KEY = os.environ['LASTFM_API_KEY']
 print(LASTFM_API_KEY)
-#LASTFM_API_KEY = "c3ba5cc66dea759e68b15becf7f22a6f"
 LASTFM_API = "http://ws.audioscrobbler.com/2.0/"
 
 IFTTT_API_KEY = os.environ['IFTTT_API_KEY']
-#IFTTT_API_KEY = "b_pkxKIkzdFiLXPCLlEt-k"
 IFTTT_API = f"https://maker.ifttt.com/trigger/lastfm_notify/with/key/{IFTTT_API_KEY}"
 
 def get_local_day_timestamps():
