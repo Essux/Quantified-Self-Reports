@@ -3,7 +3,6 @@ import os
 from datetime import datetime, timezone, timedelta
 
 LASTFM_API_KEY = os.environ['LASTFM_API_KEY']
-print(LASTFM_API_KEY)
 LASTFM_API = "http://ws.audioscrobbler.com/2.0/"
 
 IFTTT_API_KEY = os.environ['IFTTT_API_KEY']
@@ -42,17 +41,13 @@ def send_lastfm_report():
     metadata = r["weeklyartistchart"]["@attr"]
 
     artist_text = []
-
     for artist in artist_data:
         rank = int(artist["@attr"]["rank"])
         playcount = artist["playcount"]
         name = artist["name"]
         if rank<=10:
             artist_text.append(f"{rank}. {name} - {playcount} plays")
-
-
     artist_text = '<br>'.join(artist_text)
-    print(artist_text)
 
     from_timestamp = int(metadata["from"])
     to_timestamp = int(metadata["to"])
