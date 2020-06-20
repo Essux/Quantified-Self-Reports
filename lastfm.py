@@ -1,3 +1,4 @@
+from flask import render_template
 import requests
 import os
 from datetime import datetime, timezone, timedelta
@@ -40,14 +41,18 @@ def send_lastfm_report():
     artist_data = r["weeklyartistchart"]["artist"]
     metadata = r["weeklyartistchart"]["@attr"]
 
-    artist_text = []
+    artists = []
     for artist in artist_data:
         rank = int(artist["@attr"]["rank"])
         playcount = artist["playcount"]
         name = artist["name"]
         if rank<=10:
-            artist_text.append(f"{rank}. {name} - {playcount} plays")
-    artist_text = '<br>'.join(artist_text)
+            artists.append({
+                "name": name,
+                "rank": rank,
+                "playcount": playcount
+            })
+    email_html = render_template("email.html", artists=artists)
 
     from_timestamp = int(metadata["from"])
     to_timestamp = int(metadata["to"])
@@ -56,7 +61,7 @@ def send_lastfm_report():
     print(from_date, to_date)
 
     payload = {
-        "value1": artist_text
+        "value1": email_html
     }
 
     print("Querying IFTTT server")

@@ -1,0 +1,5 @@
+<h1>LastFM Daily Report</h1>
+<p>This are your top artists for today.</p>
+{% for artist in artists %}
+<div><p>{{ artist.rank }}. {{artist.name}} - {{artist.playcount}} plays</p></div>
+{% endfor %}
