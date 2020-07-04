@@ -1,0 +1,29 @@
+
+<h1>Daily Quantified Self Report</h1>
+
+<h2>Top Categories</h2>
+
+
+{% for category in categories %}
+<div>
+    <div id="item" style="display: flex; justify-content: left;">
+        <div id="text-item" style="width: 40%; max-width: 50%;">
+            <p>
+                {{ category.rank }}. {{category.category}}
+            </p>
+        </div>
+        <div class="meter" id="meter-item" style="height: 20px; position: relative; padding: 15px; width: 20%; max-width: 40%;">
+            <span style="font-weight: bold; width: {{category.bar_width}}%; display: block; height: 100%; background-color: rgb(101, 126, 240); position: relative; overflow: hidden;">{{category.time}}</span>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<img src="https://www.dropbox.com/s/spcgc6d2q5qxw6v/rescuetime_logo.png?dl=1" width="200px", style="max-width:640px;margin:0">
+
+
+<h2>Top Artists</h2>
+
+{% for artist in artists %}
+<div><p>{{ artist.rank }}. {{artist.name}} - {{artist.playcount}} plays</p></div>
+{% endfor %}
